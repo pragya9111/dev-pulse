@@ -7,11 +7,15 @@ $secondary-teal: #2DD4BF;
 $secondary-soft: #CCFBF1;
 
 $accent-indigo: #818CF8;
+$accent-hover: #6366F1;
+$accent-soft: #E0E7FF;
 
 // Neutral Base
 $bg-light: #FAFAFA;
+$surface-light: #FFFFFF;
 $text-dark: #0F172A;
 $muted-text: #64748B;
+$border-light: #E5E7EB;
 
 // Typography
 $font-heading: 'Space Grotesk', sans-serif;
@@ -25,4 +29,12 @@ $font-body: 'Fredoka', sans-serif;
     box-shadow: 0 8px 30px rgba($primary-coral, 0.15);
     transform: translateY(-4px);
   }
+}
+@mixin button-style {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }

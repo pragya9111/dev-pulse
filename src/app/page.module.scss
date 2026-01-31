@@ -1,0 +1,108 @@
+@use "../styles/variables" as v;
+
+.heroSection {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: radial-gradient(circle at top, v.$primary-soft 0%, v.$bg-light 50%);
+  padding: 2rem;
+  position: relative; 
+  overflow: hidden;
+
+  .floatingBadge {
+    position: absolute;
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    pointer-events: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    animation: float 6s ease-in-out infinite;
+
+    &.badge1 { top: 15%; left: 10%; background: v.$secondary-soft; color: v.$secondary-teal; }
+    &.badge2 { top: 20%; right: 12%; background: v.$primary-soft; color: v.$primary-coral; animation-delay: 2s; }
+    &.badge3 { bottom: 25%; left: 15%; background: v.$accent-soft; color: v.$accent-indigo; animation-delay: 4s; }
+  }
+
+  h1 {
+    font-family: var(--font-space);
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(90deg, v.$primary-coral, v.$accent-indigo);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  p {
+    font-family: var(--font-fredoka);
+    font-size: 1.25rem;
+    color: v.$muted-text;
+    max-width: 600px;
+    margin-bottom: 2.5rem;
+  }
+
+  // Ant Design class override locally
+  :global(.ant-btn-primary) {
+    height: 54px;
+    padding: 0 40px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    background-color: v.$primary-coral;
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 10px 20px rgba(v.$primary-coral, 0.2);
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.05) !important;
+      background-color: v.$primary-hover !important;
+    }
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+// Bento Grid Styles
+.bentoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto 4rem auto;
+  padding: 0 2rem;
+
+  .bentoItem {
+    background: v.$surface-light;
+    padding: 2rem;
+    border: 1px solid v.$border-light;
+    border-radius: 16px;
+    text-align: left;
+    transition: all 0.3s ease;
+
+    &:hover {
+      border-color: v.$primary-coral;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      transform: translateY(-5px);
+    }
+
+    h3 { font-family: var(--font-space); margin: 1rem 0; font-size: 1.5rem; color: v.$text-dark; }
+    p { color: v.$muted-text; line-height: 1.6; font-family: var(--font-fredoka); }
+
+    &.large {
+      grid-column: span 2;
+      background: linear-gradient(135deg, v.$surface-light 0%, v.$secondary-soft 100%);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .bentoGrid { grid-template-columns: 1fr; }
+  .bentoItem.large { grid-column: span 1; }
+}
