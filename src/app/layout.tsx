@@ -2,6 +2,7 @@ import { Space_Grotesk, Fredoka } from 'next/font/google';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { ConfigProvider } from 'antd';
 import '../styles/globals.css';
+import { Navbar } from '@/components/Navbar/Navbar'
 
 const spaceGrotesk = Space_Grotesk({ 
   subsets: ['latin'], 
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               },
             }}
           >
+             <Navbar /> 
             {children}
           </ConfigProvider>
         </AntdRegistry>

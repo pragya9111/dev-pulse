@@ -9,8 +9,33 @@
   text-align: center;
   background: radial-gradient(circle at top, v.$primary-soft 0%, v.$bg-light 50%);
   padding: 2rem;
-  position: relative; 
+  position: relative;
+  background: v.$bg-light;
   overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, v.$primary-soft 0%, transparent 70%);
+    filter: blur(60px);
+    z-index: 0;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 10%;
+    left: -5%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, v.$secondary-soft 0%, transparent 70%);
+    filter: blur(50px);
+    z-index: 0;
+  }
 
   .floatingBadge {
     position: absolute;
@@ -19,17 +44,81 @@
     font-size: 0.9rem;
     font-weight: 500;
     pointer-events: none;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     animation: float 6s ease-in-out infinite;
+    z-index: 10;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    font-family: var(--font-space);
 
-    &.badge1 { top: 15%; left: 10%; background: v.$secondary-soft; color: v.$secondary-teal; }
-    &.badge2 { top: 20%; right: 12%; background: v.$primary-soft; color: v.$primary-coral; animation-delay: 2s; }
-    &.badge3 { bottom: 25%; left: 15%; background: v.$accent-soft; color: v.$accent-indigo; animation-delay: 4s; }
+    &.badge1 {
+      top: 15%;
+      left: 10%;
+      background: v.$secondary-soft;
+      color: v.$secondary-teal;
+      box-shadow: 0 8px 20px rgba(v.$secondary-teal, 0.15);
+    }
+
+    &.badge2 {
+      top: 20%;
+      right: 12%;
+      background: v.$primary-soft;
+      color: v.$primary-coral;
+      animation-delay: 2s;
+      box-shadow: 0 8px 20px rgba(v.$primary-coral, 0.15);
+    }
+
+    &.badge3 {
+      bottom: 25%;
+      left: 15%;
+      background: v.$accent-soft;
+      color: v.$accent-indigo;
+      animation-delay: 4s;
+      box-shadow: 0 8px 20px rgba(v.$accent-indigo, 0.15);
+    }
+
+    &.badge4 {
+      top: 35%;
+      left: 8%;
+      background: v.$primary-soft;
+      color: v.$primary-coral;
+      animation-delay: 1s;
+      box-shadow: 0 8px 20px rgba(v.$primary-coral, 0.15);
+    }
+
+    &.badge5 {
+      top: 40%;
+      right: 10%;
+      background: v.$accent-soft;
+      color: v.$accent-indigo;
+      animation-delay: 3s;
+      box-shadow: 0 8px 20px rgba(v.$accent-indigo, 0.15);
+    }
+
+    &.badge6 {
+      bottom: 30%;
+      right: 8%;
+      background: v.$secondary-soft;
+      color: v.$secondary-teal;
+      animation-delay: 5s;
+      box-shadow: 0 8px 20px rgba(v.$secondary-teal, 0.15);
+    }
+
+    &.badge7 {
+      bottom: 15%;
+      left: 5%;
+      background: linear-gradient(135deg, v.$primary-soft, v.$accent-soft);
+      color: v.$text-dark;
+      animation-delay: 6s;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
   }
 
   h1 {
     font-family: var(--font-space);
     font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
     line-height: 1.1;
     margin-bottom: 1.5rem;
     background: linear-gradient(90deg, v.$primary-coral, v.$accent-indigo);
@@ -56,7 +145,7 @@
     border: none;
     box-shadow: 0 10px 20px rgba(v.$primary-coral, 0.2);
     transition: all 0.3s ease;
-    
+
     &:hover {
       transform: scale(1.05) !important;
       background-color: v.$primary-hover !important;
@@ -65,8 +154,15 @@
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 // Bento Grid Styles
@@ -85,15 +181,41 @@
     border-radius: 16px;
     text-align: left;
     transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    border: 1px solid rgba(v.$border-light, 0.5);
 
     &:hover {
       border-color: v.$primary-coral;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
       transform: translateY(-5px);
     }
 
-    h3 { font-family: var(--font-space); margin: 1rem 0; font-size: 1.5rem; color: v.$text-dark; }
-    p { color: v.$muted-text; line-height: 1.6; font-family: var(--font-fredoka); }
+    h3 {
+      font-family: var(--font-space);
+      margin: 1rem 0;
+      font-size: 1.5rem;
+      color: v.$text-dark;
+      letter-spacing: -0.01em;
+      font-weight: 600;
+    }
+
+    svg {
+      margin-bottom: 0.5rem;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover svg {
+      transform: rotate(-10deg) scale(1.1);
+    }
+
+    p {
+      color: v.$muted-text;
+      line-height: 1.6;
+      font-family: var(--font-fredoka);
+    }
 
     &.large {
       grid-column: span 2;
@@ -103,6 +225,11 @@
 }
 
 @media (max-width: 768px) {
-  .bentoGrid { grid-template-columns: 1fr; }
-  .bentoItem.large { grid-column: span 1; }
+  .bentoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .bentoItem.large {
+    grid-column: span 1;
+  }
 }

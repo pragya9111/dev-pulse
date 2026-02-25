@@ -1,0 +1,86 @@
+@use "../../styles//variables.scss" as v;
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  z-index: 1000;
+  backdrop-filter: blur(12px);
+  background: rgba(v.$bg-light, 0.7);
+  border-bottom: 1px solid rgba(v.$border-light, 0.5);
+
+  .logo {
+    font-family: var(--font-space);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: v.$text-dark;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    span {
+      color: v.$primary-coral;
+    }
+  }
+
+  .navLinks {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    .link {
+      font-family: var(--font-fredoka);
+      font-weight: 500;
+      color: v.$muted-text;
+      cursor: pointer;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: v.$primary-coral;
+      }
+    }
+  }
+
+  .authButtons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    :global(.ant-btn) {
+      font-family: var(--font-fredoka);
+      border-radius: 10px;
+      font-weight: 500;
+    }
+
+    .loginBtn {
+      color: v.$text-dark;
+      &:hover {
+        color: v.$primary-coral !important;
+      }
+    }
+
+    .signupBtn {
+      background-color: v.$primary-coral;
+      border: none;
+      box-shadow: 0 4px 12px rgba(v.$primary-coral, 0.2);
+
+      &:hover {
+        background-color: v.$primary-hover !important;
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .navLinks {
+    display: none; // Mobile menu hum baad me handle karenge
+  }
+}
