@@ -54,3 +54,79 @@
 - Customized Ant Design Primary Button with hover scale effects.
 - Added Responsive SCSS module for Landing Page.
 - Rename variable.scss file to variables.scss
+
+### 📝 Recent Implementation: Phase 3 (GraphQL API & Database)
+- **GraphQL API Setup**: Apollo Server with Next.js integration
+- **Database Schema**: MySQL with Drizzle ORM (users, resources tables)
+- **Apollo Client**: Configured with provider wrapper for client-side queries
+- **Type-safe Resolvers**: Implemented for getResources and addResource mutations
+- **Database Connection**: Drizzle with MySQL2 driver
+
+## 🔧 GraphQL Setup
+
+### API Endpoint
+- **GraphQL Endpoint**: `/api/graphql`
+- **Schema Location**: [src/graphql/schema.ts](./src/graphql/schema.ts)
+- **Resolvers Location**: [src/graphql/resolvers.ts](./src/graphql/resolvers.ts)
+
+### Available Queries
+```graphql
+query {
+  getResources {
+    id
+    title
+    description
+    url
+    thumbnail
+    category
+    upvotes
+  }
+  
+  getResourceById(id: "1") {
+    id
+    title
+    # ... other fields
+  }
+}
+```
+
+### Available Mutations
+
+```graphql
+mutation {
+  addResource(
+    title: "Amazing Resource"
+    url: "https://example.com"
+    category: "tools"
+    description: "A useful developer tool"
+  ) {
+    id
+    title
+    url
+    category
+  }
+}
+```
+
+### Database Setup
+#### Environment Variables
+Create `.env.local` file:
+```bash
+DATABASE_URL="mysql://username:password@localhost:3306/dev_pulse"
+```
+
+#### Drizzle Commands
+```bash
+# Generate migrations
+npx drizzle-kit generate
+
+# Run migrations
+npx drizzle-kit migrate
+
+# Push to database (development)
+npm run db:push
+```
+
+#### Database Schema
+- **Users Table**: id, name, email, image, createdAt
+- **Resources Table**: id, title, description, url, thumbnail, category, authorId, upvotes, createdAt

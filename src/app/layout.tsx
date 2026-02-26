@@ -3,6 +3,7 @@ import { AntdRegistry } from '@ant-design/nextjs-registry';
 import { ConfigProvider } from 'antd';
 import '../styles/globals.css';
 import { Navbar } from '@/components/Navbar/Navbar'
+import { ApolloWrapper } from '@/lib/ApolloWrapper';
 
 const spaceGrotesk = Space_Grotesk({ 
   subsets: ['latin'], 
@@ -30,8 +31,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               },
             }}
           >
-             <Navbar /> 
-            {children}
+            <ApolloWrapper>
+              <Navbar /> 
+              {children}
+            </ApolloWrapper>
           </ConfigProvider>
         </AntdRegistry>
       </body>
